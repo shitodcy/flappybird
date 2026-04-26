@@ -23,8 +23,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yr30m"]
-radius = 26.0
-height = 70.0
+radius = 17.0
+height = 42.0
 
 [node name="Bird" type="CharacterBody2D" unique_id=908047453]
 script = ExtResource("1_crnqq")
@@ -36,6 +36,6 @@ sprite_frames = SubResource("SpriteFrames_cchwj")
 animation = &"flying"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=512537444]
-position = Vector2(308, 84)
+position = Vector2(308, 83)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_yr30m")
