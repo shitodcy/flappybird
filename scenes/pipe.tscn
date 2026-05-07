@@ -49,7 +49,7 @@ shape = SubResource("RectangleShape2D_ss4sx")
 [node name="ScoreArea" type="Area2D" parent="." unique_id=1198459751]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea" unique_id=1189986291]
-position = Vector2(52, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_arpqm")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

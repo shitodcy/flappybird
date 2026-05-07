@@ -22,7 +22,7 @@ position = Vector2(-279, 353)
 z_index = 1
 
 [node name="PipeTimer" type="Timer" parent="." unique_id=536286164]
-wait_time = 1.5
+wait_time = 2.0
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=263551495]
 z_index = 1

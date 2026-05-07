@@ -4,13 +4,13 @@ extends Node
 
 var game_running : bool
 var game_over : bool
-var scroll
+var scroll : float = 0.0
 var score
-const SCROLL_SPEED : int = 4
+const SCROLL_SPEED : float = 200.0
 var screen_size : Vector2i
 var ground_height : int
 var pipes : Array
-const PIPE_DELAY : int = 100
+const PIPE_DELAY : int = 500
 const PIPE_RANGE : int = 200
 
 # Called when the node enters the scene tree for the first time.
@@ -33,8 +33,8 @@ func new_game():
 	
 func _input(event):
 	if game_over == false:
-		if event is InputEventMouseButton:
-			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if event is InputEventKey:
+			if event.pressed and event.keycode == KEY_SPACE:
 				if game_running == false:
 					start_game()
 				else:
@@ -50,15 +50,34 @@ func start_game():
 
 func _process(delta):
 	if game_running:
-		scroll += SCROLL_SPEED
-		#reset scroll
+		var movement = SCROLL_SPEED * delta 
+		
+		scroll += movement
+		
+		# Reset scroll untuk loop background ground
 		if scroll >= screen_size.x:
 			scroll = 0
-		#move ground node	
+			
+		# Pindahkan posisi ground
 		$Ground.position.x = -scroll
-		#move pipes
-		for pipe in pipes:
-			pipe.position.x -= SCROLL_SPEED
+		
+		# Loop mundur (backwards) agar saat menghapus isi array, 
+		# index-nya tidak berantakan.
+		for i in range(pipes.size() - 1, -1, -1):
+			var pipe = pipes[i]
+			
+			# Memastikan pipa masih ada sebelum digerakkan
+			if is_instance_valid(pipe):
+				pipe.position.x -= movement
+				
+				# Hapus pipa
+				if pipe.position.x < -100: 
+					pipe.queue_free()   # Hapus dari game
+					pipes.remove_at(i)  # Hapus dari daftar Array
+					print("Pipa dihapus")
+			else:
+				# Jika pipa sudah hilang tapi masih ada di list
+				pipes.remove_at(i)
 
 
 func _on_pipe_timer_timeout():
