@@ -6,7 +6,7 @@ var game_running : bool
 var game_over : bool
 var scroll : float = 0.0
 var score
-const SCROLL_SPEED : float = 200.0
+const SCROLL_SPEED : float = 240.0
 var screen_size : Vector2i
 var ground_height : int
 var pipes : Array
@@ -74,7 +74,6 @@ func _process(delta):
 				if pipe.position.x < -100: 
 					pipe.queue_free()   # Hapus dari game
 					pipes.remove_at(i)  # Hapus dari daftar Array
-					print("Pipa dihapus")
 			else:
 				# Jika pipa sudah hilang tapi masih ada di list
 				pipes.remove_at(i)
