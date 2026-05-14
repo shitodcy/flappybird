@@ -94,6 +94,7 @@ func generate_pipes():
 func scored():
 	score += 1
 	$ScoreLabel.text = "SCORE: " + str(score)
+	$ScoreSound.play() # Memutar efek suara saat skor bertambah
 	
 func check_top():
 	if $Bird.position.y < 0:
@@ -108,10 +109,12 @@ func stop_game():
 	game_over = true
 
 func bird_hit():
+	$HitSound.play() # Memutar suara tabrakan
 	$Bird.falling = true
 	stop_game()
 	
 func _on_ground_hit():
+	$HitSound.play() # Memutar suara tabrakan saat kena tanah
 	$Bird.falling = false
 	stop_game()
 
