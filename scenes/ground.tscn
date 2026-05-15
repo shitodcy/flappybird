@@ -10,7 +10,8 @@ size = Vector2(1728.5, 164)
 script = ExtResource("1_mi8v4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=516131956]
-position = Vector2(0, 852)
+position = Vector2(-1, 849.6346)
+scale = Vector2(1.001736, 1.0075547)
 texture = ExtResource("2_lmksl")
 offset = Vector2(864, 0)
 
