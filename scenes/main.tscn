@@ -1,14 +1,23 @@
 [gd_scene format=3 uid="uid://bf2qa8xpdeo8i"]
 
 [ext_resource type="Script" uid="uid://cj71tuxjbs17i" path="res://scenes/main.gd" id="1_sugp2"]
-[ext_resource type="Texture2D" uid="uid://bhic3mcn7pe6u" path="res://assets/bg.png" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://vynmpck4ijox" path="res://scenes/pipe.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bqeb7br0unuvx" path="res://scenes/bird.tscn" id="3_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://coesy8pf1vq3x" path="res://assets/rural area/ruralparallaxsky.png" id="3_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://5ikmwer3n228" path="res://assets/rural area/ruralparalaxmoon.png" id="4_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://c0oi8rm1gxe3x" path="res://scenes/ground.tscn" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://cjctmuxhqi5ya" path="res://assets/rural area/ruralparallaxclouds.png" id="5_trceg"]
 [ext_resource type="PackedScene" uid="uid://uccisgjp4ka7" path="res://scenes/game_over.tscn" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://cxwkop8jy7d64" path="res://assets/rural area/ruralparallaxmountainback2.png" id="6_trceg"]
+[ext_resource type="Texture2D" uid="uid://c17mv46e3iu8h" path="res://assets/rural area/ruralparallaxmountainback.png" id="7_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://bisus6s6hdgyu" path="res://assets/score.wav" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dd5jujkgdd3j2" path="res://assets/rural area/ruralparallaxmountain.png" id="8_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://bslxlfl248lr6" path="res://assets/hit.wav" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://c01m8k1s0858o" path="res://assets/fall.wav" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://b163q0p30scyj" path="res://assets/rural area/ruralparallaxvillage.png" id="9_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://benxgsnic3apa" path="res://assets/rural area/ruralparallaxriver.png" id="10_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://cosmp1l2t3aee" path="res://assets/rural area/ruralparallaxriverskyredlex.png" id="11_dp3eg"]
+[ext_resource type="AudioStream" uid="uid://b73y85x7qt4bm" path="res://assets/summer nights.ogg" id="18_dp3eg"]
 
 [node name="Main" type="Node" unique_id=111267009]
 script = ExtResource("1_sugp2")
@@ -16,19 +25,94 @@ pipe_scene = ExtResource("2_tbgi4")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2075249193]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=969424608]
+[node name="LayerSky" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2068022234]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(3800, 0)
 
-[node name="Background" type="Sprite2D" parent="ParallaxBackground" unique_id=273429220]
-position = Vector2(1, 2.000002)
-scale = Vector2(0.9930555, 0.99791884)
-texture = ExtResource("2_jyhfs")
-offset = Vector2(432, 384)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerSky" unique_id=1640242563]
+position = Vector2(411, 710.5)
+scale = Vector2(1, 1.2141666)
+texture = ExtResource("3_ya4ey")
+
+[node name="LayerMoon" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1289314061]
+motion_scale = Vector2(0.02, 0.02)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMoon" unique_id=29547957]
+position = Vector2(-68, 617)
+scale = Vector2(0.5265789, 0.5354166)
+texture = ExtResource("4_eb6dy")
+
+[node name="LayerClouds" type="ParallaxLayer" parent="ParallaxBackground" unique_id=744658111]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerClouds" unique_id=344068152]
+position = Vector2(411, 343)
+scale = Vector2(1, 0.58666664)
+texture = ExtResource("5_trceg")
+
+[node name="LayerMountainBack2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=345759096]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMountainBack2" unique_id=148793196]
+position = Vector2(409.5001, 723)
+scale = Vector2(1.0028949, 0.875)
+texture = ExtResource("6_trceg")
+
+[node name="LayerMountainBack" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2010210959]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMountainBack" unique_id=307279675]
+position = Vector2(412.5, 602.5)
+scale = Vector2(1.0013158, 1.1758333)
+texture = ExtResource("7_a8y0u")
+
+[node name="LayerMountain" type="ParallaxLayer" parent="ParallaxBackground" unique_id=930202092]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMountain" unique_id=1013981642]
+position = Vector2(408, 612.25006)
+scale = Vector2(1, 0.6620834)
+texture = ExtResource("8_a8y0u")
+
+[node name="LayerVillage" type="ParallaxLayer" parent="ParallaxBackground" unique_id=207375355]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerVillage" unique_id=420689959]
+position = Vector2(409.50003, 627.5)
+scale = Vector2(1.0013158, 1.0508333)
+texture = ExtResource("9_jkv2x")
+
+[node name="ForegroundParallax" type="ParallaxBackground" parent="." unique_id=1211136850]
+layer = 1
+
+[node name="LayerRiver" type="ParallaxLayer" parent="ForegroundParallax" unique_id=677783035]
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ForegroundParallax/LayerRiver" unique_id=928236752]
+position = Vector2(944.00006, 581)
+scale = Vector2(1.2752632, 1)
+texture = ExtResource("10_jbj1t")
+
+[node name="LayerRiverBack" type="ParallaxLayer" parent="ForegroundParallax" unique_id=784312181]
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ForegroundParallax/LayerRiverBack" unique_id=1957614128]
+position = Vector2(935.50006, 577)
+scale = Vector2(1.273421, 1)
+texture = ExtResource("11_dp3eg")
 
 [node name="Bird" parent="." unique_id=908047453 instance=ExtResource("3_tbgi4")]
 position = Vector2(-279, 353)
 
 [node name="Ground" parent="." unique_id=1390901750 instance=ExtResource("4_jyhfs")]
 z_index = 1
+position = Vector2(0, 80)
 
 [node name="PipeTimer" type="Timer" parent="." unique_id=536286164]
 wait_time = 2.0
@@ -65,6 +149,10 @@ stream = ExtResource("9_85g3d")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1651221332]
 anchor_mode = 0
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=12790764]
+stream = ExtResource("18_dp3eg")
+autoplay = true
 
 [connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]

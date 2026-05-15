@@ -15,7 +15,7 @@ const PIPE_DELAY : int = 500
 const PIPE_RANGE : int = 200
 const SAVE_PATH = "user://highscore.save"
 
-@onready var camera = $Camera2D # Mengambil referensi node Camera2D
+@onready var camera = $Camera2D
 
 var shake_intensity : float = 0.0
 var shake_duration : float = 0.0
@@ -24,10 +24,9 @@ func trigger_shake(intensity: float, duration: float):
 	shake_intensity = intensity
 	shake_duration = duration
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_window().size
-	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
+	ground_height = 164 
 	load_high_score()
 	new_game()
 
@@ -36,7 +35,8 @@ func new_game():
 	game_over = false
 	score = 0
 	scroll = 0
-	SCROLL_SPEED = 240.0 # <-- Tambahkan baris ini untuk mereset kecepatan
+	SCROLL_SPEED = 240.0
+	$BGM.play()
 	$ScoreLabel.text = "SCORE: " + str(score)
 	update_high_score_label()
 	$GameOver.hide()
@@ -66,47 +66,32 @@ func _process(delta):
 	if game_running:
 		var movement = SCROLL_SPEED * delta 
 		
-		scroll += movement
+		# Menggerakkan Parallax Belakang (Gunung, Awan, Sky)
+		$ParallaxBackground.scroll_base_offset.x -= movement
 		
-		# --- TAMBAHAN PARALLAX SCROLLING ---
-		# Latar belakang bergerak 20% dari kecepatan tanah agar terlihat 3D
-		$ParallaxBackground.scroll_offset.x -= movement * 0.2
+		# Ini akan menggerakkan sungai berdasarkan kecepatan yang diatur di Motion Scale
+		$ForegroundParallax.scroll_base_offset.x -= movement
 		
-		# Reset scroll untuk loop background ground
-		if scroll >= screen_size.x:
-			scroll = 0
-			
-		# Pindahkan posisi ground
-		$Ground.position.x = -scroll
-		
-		# Loop mundur (backwards) agar saat menghapus isi array, 
-		# index-nya tidak berantakan.
+		# Loop mundur untuk menggerakkan dan menghapus pipa
 		for i in range(pipes.size() - 1, -1, -1):
 			var pipe = pipes[i]
-			
-			# Memastikan pipa masih ada sebelum digerakkan
 			if is_instance_valid(pipe):
 				pipe.position.x -= movement
-				
-				# Hapus pipa
 				if pipe.position.x < -100: 
-					pipe.queue_free()   # Hapus dari game
-					pipes.remove_at(i)  # Hapus dari daftar Array
+					pipe.queue_free()   
+					pipes.remove_at(i)  
 			else:
-				# Jika pipa sudah hilang tapi masih ada di list
 				pipes.remove_at(i)
 
-	# --- LOGIKA SHAKE (Di luar if game_running agar tetap bergetar saat mati) ---
+	# Logika Screen Shake
 	if shake_duration > 0:
 		shake_duration -= delta
-		# Menggeser offset kamera secara acak berdasarkan intensitas
 		camera.offset = Vector2(
 			randf_range(-shake_intensity, shake_intensity), 
 			randf_range(-shake_intensity, shake_intensity)
 		)
 	else:
-		# Kembalikan offset ke 0,0 jika getaran selesai agar layar kembali normal
-		camera.offset = Vector2.ZERO
+		camera.offset = Vector2.ZERO 
 
 
 func _on_pipe_timer_timeout():
@@ -153,6 +138,7 @@ func update_high_score_label():
 		$HighScoreLabel.text = "HIGH SCORE: " + str(high_score)
 
 func stop_game():
+	$BGM.stop()
 	$PipeTimer.stop()
 	if score > high_score:
 		high_score = score
