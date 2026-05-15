@@ -15,11 +15,72 @@ texture = ExtResource("2_tbwuq")
 [node name="GameOver" type="CanvasLayer" unique_id=1893970020]
 script = ExtResource("1_wqhvx")
 
+[node name="Board" type="ColorRect" parent="." unique_id=1203006969]
+custom_minimum_size = Vector2(400, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -200.0
+offset_right = 214.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3372549)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1792140741]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -275.0
+offset_right = 217.5
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TitleScore" type="Label" parent="VBoxContainer" unique_id=521326277]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "SCORE :"
+horizontal_alignment = 1
+
+[node name="ScoreValue" type="Label" parent="VBoxContainer" unique_id=808868877]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "0"
+horizontal_alignment = 1
+
+[node name="TitleHighScore" type="Label" parent="VBoxContainer" unique_id=246795991]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "HIGHSCORE :"
+horizontal_alignment = 1
+
+[node name="HighScoreValue" type="Label" parent="VBoxContainer" unique_id=1103824875]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "0"
+horizontal_alignment = 1
+
 [node name="RestartButton" type="Button" parent="." unique_id=599797784]
-offset_left = 342.0
-offset_top = 350.0
-offset_right = 502.0
-offset_bottom = 413.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -364.0
+offset_right = 128.0
+offset_bottom = -291.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_racf3")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7m3ot")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wqhvx")
