@@ -68,6 +68,10 @@ func _process(delta):
 		
 		scroll += movement
 		
+		# --- TAMBAHAN PARALLAX SCROLLING ---
+		# Latar belakang bergerak 20% dari kecepatan tanah agar terlihat 3D
+		$ParallaxBackground.scroll_offset.x -= movement * 0.2
+		
 		# Reset scroll untuk loop background ground
 		if scroll >= screen_size.x:
 			scroll = 0

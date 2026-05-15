@@ -14,7 +14,11 @@
 script = ExtResource("1_sugp2")
 pipe_scene = ExtResource("2_tbgi4")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=273429220]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2075249193]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=969424608]
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground" unique_id=273429220]
 position = Vector2(1, 2.000002)
 scale = Vector2(0.9930555, 0.99791884)
 texture = ExtResource("2_jyhfs")
