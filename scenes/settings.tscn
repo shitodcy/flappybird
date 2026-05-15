@@ -1,23 +1,27 @@
 [gd_scene format=3 uid="uid://fb7bpl0i8ans"]
 
 [ext_resource type="Script" uid="uid://cdy5811lsk5v" path="res://scenes/settings.gd" id="1_5p8wc"]
+[ext_resource type="Texture2D" uid="uid://bvasj81q40utu" path="res://assets/Frame_SimplePlaque.png" id="2_es4n0"]
+[ext_resource type="FontFile" uid="uid://dfjn5lkewc873" path="res://assets/game_over.ttf" id="2_r6d6q"]
+[ext_resource type="Texture2D" uid="uid://ghlwqfqdovml" path="res://assets/Music-Off.png" id="3_f4mfi"]
+[ext_resource type="Texture2D" uid="uid://ct8lc4630e70c" path="res://assets/Music-On.png" id="4_es4n0"]
 
 [node name="SettingsMenu" type="CanvasLayer" unique_id=696278633]
 script = ExtResource("1_5p8wc")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1483498015]
+[node name="Board" type="TextureRect" parent="." unique_id=2051834571]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -290.0
+offset_left = -310.0
 offset_top = -168.0
-offset_right = 290.0
-offset_bottom = 170.0
+offset_right = 305.0
+offset_bottom = 188.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3529412)
+texture = ExtResource("2_es4n0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=276168590]
 anchors_preset = 8
@@ -26,22 +30,35 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -276.0
-offset_top = -187.5
+offset_top = -161.0
 offset_right = 276.0
-offset_bottom = 141.5
+offset_bottom = 159.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
 [node name="settings" type="Label" parent="VBoxContainer" unique_id=1062314549]
 layout_mode = 2
-theme_override_font_sizes/font_size = 120
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.8784314, 0.32156864, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 200
 text = "SETTINGS"
 horizontal_alignment = 1
 
-[node name="MuteButton" type="CheckBox" parent="VBoxContainer" unique_id=1290137396]
+[node name="MuteButton" type="TextureButton" parent="VBoxContainer" unique_id=451751668]
 layout_mode = 2
-text = "Mute All"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "mute"
+toggle_mode = true
+texture_normal = ExtResource("4_es4n0")
+texture_pressed = ExtResource("3_f4mfi")
 
 [node name="bgm volume" type="Label" parent="VBoxContainer" unique_id=31914242]
 layout_mode = 2
@@ -49,6 +66,7 @@ text = "BGM Volume"
 
 [node name="BGMSlider" type="HSlider" parent="VBoxContainer" unique_id=2021347992]
 layout_mode = 2
+size_flags_vertical = 2
 min_value = 0.001
 max_value = 1.0
 step = 0.01
@@ -60,6 +78,7 @@ text = "SFX Volume"
 
 [node name="SFXSlider" type="HSlider" parent="VBoxContainer" unique_id=1911395766]
 layout_mode = 2
+size_flags_vertical = 2
 min_value = 0.001
 max_value = 1.0
 step = 0.01
@@ -67,4 +86,5 @@ value = 0.001
 
 [node name="CloseButton" type="Button" parent="VBoxContainer" unique_id=888528066]
 layout_mode = 2
+size_flags_vertical = 4
 text = "Close"

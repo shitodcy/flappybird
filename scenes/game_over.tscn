@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://uccisgjp4ka7"]
 
 [ext_resource type="Script" uid="uid://c5lrubwwuin7o" path="res://scenes/game_over.gd" id="1_wqhvx"]
+[ext_resource type="Texture2D" uid="uid://bvasj81q40utu" path="res://assets/Frame_SimplePlaque.png" id="2_7m3ot"]
+[ext_resource type="FontFile" uid="uid://dfjn5lkewc873" path="res://assets/game_over.ttf" id="2_racf3"]
 [ext_resource type="Texture2D" uid="uid://c2vr0hea7f3vp" path="res://assets/restart.png" id="2_tbwuq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_racf3"]
@@ -15,31 +17,31 @@ texture = ExtResource("2_tbwuq")
 [node name="GameOver" type="CanvasLayer" unique_id=1893970020]
 script = ExtResource("1_wqhvx")
 
-[node name="Board" type="ColorRect" parent="." unique_id=1203006969]
+[node name="Board" type="TextureRect" parent="." unique_id=354168090]
 custom_minimum_size = Vector2(400, 400)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -214.0
-offset_top = -200.0
-offset_right = 214.0
+offset_left = -273.0
+offset_top = -221.0
+offset_right = 273.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3372549)
+texture = ExtResource("2_7m3ot")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1792140741]
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = -275.0
-offset_right = 217.5
-offset_bottom = 171.0
+offset_left = -215.0
+offset_top = -229.0
+offset_right = 213.5
+offset_bottom = 217.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -47,38 +49,79 @@ alignment = 1
 
 [node name="TitleScore" type="Label" parent="VBoxContainer" unique_id=521326277]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.8784314, 0.32156864, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_racf3")
+theme_override_font_sizes/font_size = 70
 text = "SCORE :"
 horizontal_alignment = 1
 
 [node name="ScoreValue" type="Label" parent="VBoxContainer" unique_id=808868877]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0.8784314, 0.32156864, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_racf3")
+theme_override_font_sizes/font_size = 70
 text = "0"
 horizontal_alignment = 1
 
 [node name="TitleHighScore" type="Label" parent="VBoxContainer" unique_id=246795991]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.8784314, 0.32156864, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_racf3")
+theme_override_font_sizes/font_size = 70
 text = "HIGHSCORE :"
 horizontal_alignment = 1
 
 [node name="HighScoreValue" type="Label" parent="VBoxContainer" unique_id=1103824875]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0.8784314, 0.32156864, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_racf3")
+theme_override_font_sizes/font_size = 70
 text = "0"
 horizontal_alignment = 1
 
+[node name="game over" type="Label" parent="." unique_id=878214653]
+offset_left = 210.0
+offset_top = 232.0
+offset_right = 666.0
+offset_bottom = 345.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.8784314, 0.32156864, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_racf3")
+theme_override_font_sizes/font_size = 130
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="RestartButton" type="Button" parent="." unique_id=599797784]
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -117.0
-offset_top = -364.0
-offset_right = 128.0
-offset_bottom = -291.0
+offset_left = 352.0
+offset_top = 594.0
+offset_right = 517.0
+offset_bottom = 647.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_racf3")
