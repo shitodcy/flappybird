@@ -144,6 +144,10 @@ func generate_pipes():
 	pipes.append(pipe)
 	
 func scored():
+	
+	if game_over == true:
+		return
+		
 	score += 1
 	$ScoreLabel.text = "SCORE: " + str(score)
 	$ScoreSound.play() 
@@ -191,6 +195,10 @@ func stop_game():
 	game_over = true
 
 func bird_hit():
+	
+	if game_over == true:
+		return
+		
 	$HitSound.play() 
 	trigger_shake(5.0, 0.2)
 	$Bird.falling = true
