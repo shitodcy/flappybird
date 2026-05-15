@@ -2,7 +2,16 @@ extends CanvasLayer
 
 signal restart
 
+# Mengambil referensi dari node Label yang ada di dalam scene game_over
+# Pastikan nama "Board", "VBoxContainer", "ScoreValue", dan "HighScoreValue" 
+# sama persis huruf besar/kecilnya dengan yang ada di panel Scene sebelah kiri.
+@onready var score_value = $VBoxContainer/ScoreValue
+@onready var high_score_value = $VBoxContainer/HighScoreValue
+
+# Fungsi ini dipanggil oleh main.gd saat burung mati
+func set_scores(current_score: int, high_score_data: int):
+	score_value.text = str(current_score)
+	high_score_value.text = str(high_score_data)
 
 func _on_restart_button_pressed():
-	print("Permainan dimulai")
 	restart.emit()
