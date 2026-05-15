@@ -217,5 +217,3 @@ func _on_settings_button_pressed():
 		if game_running:
 			get_tree().paused = true
 		settings_menu.show()
-	else:
-		print("Peringatan: Node SettingsMenu tidak ditemukan!") 
