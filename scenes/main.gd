@@ -7,13 +7,22 @@ var game_over : bool
 var scroll : float = 0.0
 var score : int
 var high_score : int = 0
-const SCROLL_SPEED : float = 240.0
+var SCROLL_SPEED : float = 240.0
 var screen_size : Vector2i
 var ground_height : int
 var pipes : Array
 const PIPE_DELAY : int = 500
 const PIPE_RANGE : int = 200
 const SAVE_PATH = "user://highscore.save"
+
+@onready var camera = $Camera2D # Mengambil referensi node Camera2D
+
+var shake_intensity : float = 0.0
+var shake_duration : float = 0.0
+
+func trigger_shake(intensity: float, duration: float):
+	shake_intensity = intensity
+	shake_duration = duration
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +36,7 @@ func new_game():
 	game_over = false
 	score = 0
 	scroll = 0
+	SCROLL_SPEED = 240.0 # <-- Tambahkan baris ini untuk mereset kecepatan
 	$ScoreLabel.text = "SCORE: " + str(score)
 	update_high_score_label()
 	$GameOver.hide()
@@ -58,6 +68,10 @@ func _process(delta):
 		
 		scroll += movement
 		
+		# --- TAMBAHAN PARALLAX SCROLLING ---
+		# Latar belakang bergerak 20% dari kecepatan tanah agar terlihat 3D
+		$ParallaxBackground.scroll_offset.x -= movement * 0.2
+		
 		# Reset scroll untuk loop background ground
 		if scroll >= screen_size.x:
 			scroll = 0
@@ -82,6 +96,18 @@ func _process(delta):
 				# Jika pipa sudah hilang tapi masih ada di list
 				pipes.remove_at(i)
 
+	# --- LOGIKA SHAKE (Di luar if game_running agar tetap bergetar saat mati) ---
+	if shake_duration > 0:
+		shake_duration -= delta
+		# Menggeser offset kamera secara acak berdasarkan intensitas
+		camera.offset = Vector2(
+			randf_range(-shake_intensity, shake_intensity), 
+			randf_range(-shake_intensity, shake_intensity)
+		)
+	else:
+		# Kembalikan offset ke 0,0 jika getaran selesai agar layar kembali normal
+		camera.offset = Vector2.ZERO
+
 
 func _on_pipe_timer_timeout():
 	generate_pipes()
@@ -99,6 +125,11 @@ func scored():
 	score += 1
 	$ScoreLabel.text = "SCORE: " + str(score)
 	$ScoreSound.play() # Memutar efek suara saat skor bertambah
+	
+	if score >= 50 and score <= 100:
+		SCROLL_SPEED += 2.0 # Tambah kecepatan 1 poin per skor
+	elif score > 100:
+		SCROLL_SPEED += 3.0 # Tambah kecepatan 4 poin per skor
 	
 func check_top():
 	if $Bird.position.y < 0:
@@ -133,11 +164,13 @@ func stop_game():
 
 func bird_hit():
 	$HitSound.play() # Memutar suara tabrakan
+	trigger_shake(5.0, 0.2)
 	$Bird.falling = true
 	stop_game()
 	
 func _on_ground_hit():
 	$HitSound.play() # Memutar suara tabrakan saat kena tanah
+	trigger_shake(5.0, 0.2)
 	$Bird.falling = false
 	stop_game()
 
