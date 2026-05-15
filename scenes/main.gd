@@ -15,6 +15,15 @@ const PIPE_DELAY : int = 500
 const PIPE_RANGE : int = 200
 const SAVE_PATH = "user://highscore.save"
 
+@onready var camera = $Camera2D # Mengambil referensi node Camera2D
+
+var shake_intensity : float = 0.0
+var shake_duration : float = 0.0
+
+func trigger_shake(intensity: float, duration: float):
+	shake_intensity = intensity
+	shake_duration = duration
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_window().size
@@ -82,6 +91,18 @@ func _process(delta):
 				# Jika pipa sudah hilang tapi masih ada di list
 				pipes.remove_at(i)
 
+	# --- LOGIKA SHAKE (Di luar if game_running agar tetap bergetar saat mati) ---
+	if shake_duration > 0:
+		shake_duration -= delta
+		# Menggeser offset kamera secara acak berdasarkan intensitas
+		camera.offset = Vector2(
+			randf_range(-shake_intensity, shake_intensity), 
+			randf_range(-shake_intensity, shake_intensity)
+		)
+	else:
+		# Kembalikan offset ke 0,0 jika getaran selesai agar layar kembali normal
+		camera.offset = Vector2.ZERO
+
 
 func _on_pipe_timer_timeout():
 	generate_pipes()
@@ -133,11 +154,13 @@ func stop_game():
 
 func bird_hit():
 	$HitSound.play() # Memutar suara tabrakan
+	trigger_shake(5.0, 0.2)
 	$Bird.falling = true
 	stop_game()
 	
 func _on_ground_hit():
 	$HitSound.play() # Memutar suara tabrakan saat kena tanah
+	trigger_shake(5.0, 0.2)
 	$Bird.falling = false
 	stop_game()
 
