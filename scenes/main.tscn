@@ -15,6 +15,8 @@ script = ExtResource("1_sugp2")
 pipe_scene = ExtResource("2_tbgi4")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=273429220]
+position = Vector2(1, 2.000002)
+scale = Vector2(0.9930555, 0.99791884)
 texture = ExtResource("2_jyhfs")
 offset = Vector2(432, 384)
 
@@ -29,12 +31,22 @@ wait_time = 2.0
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=263551495]
 z_index = 1
-offset_left = 334.0
-offset_right = 505.0
-offset_bottom = 55.0
+offset_left = 691.0
+offset_top = 3.0
+offset_right = 862.0
+offset_bottom = 58.0
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "SCORE: 0"
+
+[node name="HighScoreLabel" type="Label" parent="." unique_id=515211519]
+z_index = 1
+offset_left = 29.0
+offset_top = 2.0
+offset_right = 288.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 30
+text = "HIGH SCORE: "
 
 [node name="GameOver" parent="." unique_id=1893970020 instance=ExtResource("6_tefeu")]
 

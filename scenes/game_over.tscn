@@ -7,8 +7,10 @@
 texture = ExtResource("2_tbwuq")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7m3ot"]
+texture = ExtResource("2_tbwuq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3hpu"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqhvx"]
+texture = ExtResource("2_tbwuq")
 
 [node name="GameOver" type="CanvasLayer" unique_id=1893970020]
 script = ExtResource("1_wqhvx")
@@ -20,6 +22,6 @@ offset_right = 502.0
 offset_bottom = 413.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_racf3")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7m3ot")
-theme_override_styles/hover = SubResource("StyleBoxTexture_v3hpu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wqhvx")
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

@@ -5,18 +5,21 @@ extends Node
 var game_running : bool
 var game_over : bool
 var scroll : float = 0.0
-var score
+var score : int
+var high_score : int = 0
 const SCROLL_SPEED : float = 240.0
 var screen_size : Vector2i
 var ground_height : int
 var pipes : Array
 const PIPE_DELAY : int = 500
 const PIPE_RANGE : int = 200
+const SAVE_PATH = "user://highscore.save"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
+	load_high_score()
 	new_game()
 
 func new_game():
@@ -25,6 +28,7 @@ func new_game():
 	score = 0
 	scroll = 0
 	$ScoreLabel.text = "SCORE: " + str(score)
+	update_high_score_label()
 	$GameOver.hide()
 	get_tree().call_group("pipes", "queue_free")
 	pipes.clear()
@@ -100,9 +104,28 @@ func check_top():
 	if $Bird.position.y < 0:
 		$Bird.falling = true
 		stop_game()
+		
+func save_high_score():
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	file.store_var(high_score)
+
+# Fungsi untuk memuat high score dari file
+func load_high_score():
+	if FileAccess.file_exists(SAVE_PATH):
+		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		high_score = file.get_var()
+
+# Fungsi untuk mengupdate UI High Score
+func update_high_score_label():
+	
+	if has_node("HighScoreLabel"):
+		$HighScoreLabel.text = "HIGH SCORE: " + str(high_score)
 
 func stop_game():
 	$PipeTimer.stop()
+	if score > high_score:
+		high_score = score
+		save_high_score()
 	$GameOver.show()
 	$Bird.flying = false
 	game_running = false

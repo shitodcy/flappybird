@@ -2,11 +2,32 @@
 
 [ext_resource type="Script" uid="uid://dbtxcc4mbpbms" path="res://scenes/bird.gd" id="1_crnqq"]
 [ext_resource type="Texture2D" uid="uid://bqfmqxwew6vdc" path="res://assets/bird1.png" id="2_cchwj"]
+[ext_resource type="Texture2D" uid="uid://drchek2mfdhhi" path="res://assets/bird-nw-1.png" id="2_hrcfq"]
 [ext_resource type="Texture2D" uid="uid://bv2xyfxdlmvvn" path="res://assets/bird2.png" id="3_6ljjq"]
+[ext_resource type="Texture2D" uid="uid://46gcmkwc6v8f" path="res://assets/bird-nw-2.png" id="3_ehebh"]
 [ext_resource type="Texture2D" uid="uid://chfthwalx0m24" path="res://assets/bird3.png" id="4_axl6x"]
+[ext_resource type="Texture2D" uid="uid://bmv1wn2h1371e" path="res://assets/bird-nw-3.png" id="4_qavic"]
+[ext_resource type="Texture2D" uid="uid://cpww560ntkpsw" path="res://assets/bird-nw-4.png" id="5_ifiym"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cchwj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hrcfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ehebh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qavic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ifiym")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_cchwj")
@@ -23,8 +44,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yr30m"]
-radius = 17.0
-height = 42.0
+radius = 34.0
+height = 72.0
 
 [node name="Bird" type="CharacterBody2D" unique_id=908047453]
 script = ExtResource("1_crnqq")
@@ -33,7 +54,7 @@ script = ExtResource("1_crnqq")
 position = Vector2(306.715, 82.812004)
 scale = Vector2(0.9915687, 1.0660002)
 sprite_frames = SubResource("SpriteFrames_cchwj")
-animation = &"flying"
+animation = &"fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=512537444]
 position = Vector2(308, 83)
