@@ -7,7 +7,7 @@ var game_over : bool
 var scroll : float = 0.0
 var score : int
 var high_score : int = 0
-const SCROLL_SPEED : float = 240.0
+var SCROLL_SPEED : float = 240.0
 var screen_size : Vector2i
 var ground_height : int
 var pipes : Array
@@ -36,6 +36,7 @@ func new_game():
 	game_over = false
 	score = 0
 	scroll = 0
+	SCROLL_SPEED = 240.0 # <-- Tambahkan baris ini untuk mereset kecepatan
 	$ScoreLabel.text = "SCORE: " + str(score)
 	update_high_score_label()
 	$GameOver.hide()
@@ -120,6 +121,11 @@ func scored():
 	score += 1
 	$ScoreLabel.text = "SCORE: " + str(score)
 	$ScoreSound.play() # Memutar efek suara saat skor bertambah
+	
+	if score >= 50 and score <= 100:
+		SCROLL_SPEED += 2.0 # Tambah kecepatan 1 poin per skor
+	elif score > 100:
+		SCROLL_SPEED += 3.0 # Tambah kecepatan 4 poin per skor
 	
 func check_top():
 	if $Bird.position.y < 0:
