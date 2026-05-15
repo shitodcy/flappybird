@@ -23,8 +23,6 @@ func _ready():
 	# Muat pengaturan saat game baru dibuka
 	load_settings()
 
-# --- FUNGSI SAVE & LOAD ---
-
 func save_settings():
 	var config = ConfigFile.new()
 	
@@ -32,8 +30,6 @@ func save_settings():
 	config.set_value("audio", "mute", mute_button.button_pressed)
 	config.set_value("audio", "bgm_volume", bgm_slider.value)
 	config.set_value("audio", "sfx_volume", sfx_slider.value)
-	
-	# Tulis ke file
 	config.save(SETTINGS_PATH)
 
 func load_settings():
@@ -54,8 +50,6 @@ func load_settings():
 		# Jika belum ada file save (baru pertama main), gunakan default bawaan editor
 		bgm_slider.value = db_to_linear(AudioServer.get_bus_volume_db(bgm_bus))
 		sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(sfx_bus))
-
-# --- EVENT TOMBOL & SLIDER ---
 
 func _on_mute_toggled(toggled_on: bool):
 	AudioServer.set_bus_mute(master_bus, toggled_on)

@@ -15,10 +15,9 @@ const PIPE_DELAY : int = 500
 const PIPE_RANGE : int = 200
 const SAVE_PATH = "user://highscore.save"
 
-# Referensi Node
 @onready var camera = $Camera2D
-@onready var bgm = $BGM # Pastikan node bernama "BGM" sudah ditambahkan di main.tscn
-@onready var settings_menu = $SettingsMenu # Pastikan scene settings.tscn sudah di-instantiate dengan nama ini
+@onready var bgm = $BGM
+@onready var settings_menu = $SettingsMenu
 
 var shake_intensity : float = 0.0
 var shake_duration : float = 0.0
@@ -60,8 +59,7 @@ func new_game():
 func _input(event):
 	# Memastikan event adalah penekanan tombol keyboard
 	if event is InputEventKey and event.pressed:
-		
-		# --- SHORTCUT BUKA SETTINGS (Tombol 'S') ---
+
 		if event.keycode == KEY_S:
 			# Hanya bisa dibuka jika menu belum terbuka
 			if settings_menu != null and not settings_menu.visible:
@@ -73,8 +71,7 @@ func _input(event):
 			if settings_menu != null and settings_menu.visible:
 				settings_menu.hide()
 				# Game tetap dalam keadaan pause (menunggu spasi)
-				
-		# --- LOMPAT & UNPAUSE (Tombol 'Spasi') ---
+
 		elif event.keycode == KEY_SPACE:
 			
 			# 1. Cegah spasi melakukan apa pun jika menu pengaturan sedang terbuka
@@ -181,13 +178,10 @@ func stop_game():
 	if has_node("BGM"):
 		bgm.stop()
 		
-	# 1. CEK DAN SIMPAN HIGHSCORE DULU SEBELUM DIKIRIM
 	if score > high_score:
 		high_score = score
 		save_high_score()
-		# Opsional: update_high_score_label() jika kamu ingin teks di belakang ikut berubah
-		
-	# 2. SETELAH DISIMPAN, BARU KIRIM DATANYA KE PAPAN GAME OVER
+
 	if has_node("GameOver"):
 		$GameOver.set_scores(score, high_score)
 		$GameOver.show()
