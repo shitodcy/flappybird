@@ -15,3 +15,8 @@ func set_scores(current_score: int, high_score_data: int):
 
 func _on_restart_button_pressed():
 	restart.emit()
+	
+	
+func _on_exit_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
