@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-@onready var mute_button = $VBoxContainer/MuteButton
+@onready var mute_button = $VBoxContainer/HBoxContainer/MuteButton
+@onready var exit_menu_button = $VBoxContainer/HBoxContainer/ExitMenuButton
 @onready var bgm_slider = $VBoxContainer/BGMSlider
 @onready var sfx_slider = $VBoxContainer/SFXSlider
 @onready var close_button = $VBoxContainer/CloseButton
@@ -16,11 +17,11 @@ const SETTINGS_PATH = "user://settings.cfg"
 func _ready():
 	# Sambungkan sinyal
 	mute_button.toggled.connect(_on_mute_toggled)
+	exit_menu_button.pressed.connect(_on_exit_menu_pressed)
 	bgm_slider.value_changed.connect(_on_bgm_changed)
 	sfx_slider.value_changed.connect(_on_sfx_changed)
 	close_button.pressed.connect(_on_close_pressed)
-	
-	# Muat pengaturan saat game baru dibuka
+
 	load_settings()
 
 func save_settings():
@@ -65,3 +66,11 @@ func _on_sfx_changed(value: float):
 
 func _on_close_pressed():
 	hide()
+	
+func _on_exit_menu_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_exit_button_pressed() -> void:
+	pass # Replace with function body.

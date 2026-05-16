@@ -5,6 +5,8 @@
 [ext_resource type="FontFile" uid="uid://dfjn5lkewc873" path="res://assets/game_over.ttf" id="2_r6d6q"]
 [ext_resource type="Texture2D" uid="uid://ghlwqfqdovml" path="res://assets/Music-Off.png" id="3_f4mfi"]
 [ext_resource type="Texture2D" uid="uid://ct8lc4630e70c" path="res://assets/Music-On.png" id="4_es4n0"]
+[ext_resource type="Texture2D" uid="uid://bdy4xynih21om" path="res://assets/Hover-button.png" id="6_83j8s"]
+[ext_resource type="Texture2D" uid="uid://d1e0qkawj1lhp" path="res://assets/Exit.png" id="6_gis3k"]
 
 [node name="SettingsMenu" type="CanvasLayer" unique_id=696278633]
 script = ExtResource("1_5p8wc")
@@ -51,7 +53,11 @@ theme_override_font_sizes/font_size = 200
 text = "SETTINGS"
 horizontal_alignment = 1
 
-[node name="MuteButton" type="TextureButton" parent="VBoxContainer" unique_id=451751668]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=717029538]
+layout_mode = 2
+alignment = 1
+
+[node name="MuteButton" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=451751668]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -59,6 +65,16 @@ tooltip_text = "mute"
 toggle_mode = true
 texture_normal = ExtResource("4_es4n0")
 texture_pressed = ExtResource("3_f4mfi")
+texture_hover = ExtResource("6_83j8s")
+
+[node name="ExitMenuButton" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=576877623]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "Exit to main menu"
+toggle_mode = true
+texture_normal = ExtResource("6_gis3k")
+texture_pressed = ExtResource("6_gis3k")
+texture_hover = ExtResource("6_83j8s")
 
 [node name="bgm volume" type="Label" parent="VBoxContainer" unique_id=31914242]
 layout_mode = 2
@@ -88,3 +104,5 @@ value = 0.001
 layout_mode = 2
 size_flags_vertical = 4
 text = "Close"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitMenuButton" to="." method="_on_exit_button_pressed"]

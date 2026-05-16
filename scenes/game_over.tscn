@@ -3,16 +3,9 @@
 [ext_resource type="Script" uid="uid://c5lrubwwuin7o" path="res://scenes/game_over.gd" id="1_wqhvx"]
 [ext_resource type="Texture2D" uid="uid://bvasj81q40utu" path="res://assets/Frame_SimplePlaque.png" id="2_7m3ot"]
 [ext_resource type="FontFile" uid="uid://dfjn5lkewc873" path="res://assets/game_over.ttf" id="2_racf3"]
-[ext_resource type="Texture2D" uid="uid://c2vr0hea7f3vp" path="res://assets/restart.png" id="2_tbwuq"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_racf3"]
-texture = ExtResource("2_tbwuq")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7m3ot"]
-texture = ExtResource("2_tbwuq")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqhvx"]
-texture = ExtResource("2_tbwuq")
+[ext_resource type="Texture2D" uid="uid://bfnrgx2igmebi" path="res://assets/Restart.png" id="4_7m3ot"]
+[ext_resource type="Texture2D" uid="uid://bdy4xynih21om" path="res://assets/Hover-button.png" id="5_v3hpu"]
+[ext_resource type="Texture2D" uid="uid://dcy1dstafnmni" path="res://assets/Main-Menu.png" id="6_irg28"]
 
 [node name="GameOver" type="CanvasLayer" unique_id=1893970020]
 script = ExtResource("1_wqhvx")
@@ -116,16 +109,30 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RestartButton" type="Button" parent="." unique_id=599797784]
+[node name="RestartButton" type="TextureButton" parent="." unique_id=429904041]
 anchors_preset = -1
-offset_left = 352.0
-offset_top = 594.0
-offset_right = 517.0
-offset_bottom = 647.0
+offset_left = 362.0
+offset_top = 589.0
+offset_right = 438.0
+offset_bottom = 640.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_racf3")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7m3ot")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wqhvx")
+tooltip_text = "Restart"
+toggle_mode = true
+texture_normal = ExtResource("4_7m3ot")
+texture_pressed = ExtResource("4_7m3ot")
+texture_hover = ExtResource("5_v3hpu")
+
+[node name="ExitMenuButton" type="TextureButton" parent="." unique_id=612356745]
+offset_left = 446.0
+offset_top = 590.0
+offset_right = 522.0
+offset_bottom = 641.0
+tooltip_text = "Exit to main menu"
+toggle_mode = true
+texture_normal = ExtResource("6_irg28")
+texture_pressed = ExtResource("6_irg28")
+texture_hover = ExtResource("5_v3hpu")
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ExitMenuButton" to="." method="_on_exit_menu_button_pressed"]

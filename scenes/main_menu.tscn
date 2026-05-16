@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://cv6lo4k14xiek"]
+
+[ext_resource type="Texture2D" uid="uid://coesy8pf1vq3x" path="res://assets/rural area/ruralparallaxsky.png" id="1_flqon"]
+[ext_resource type="Texture2D" uid="uid://5ikmwer3n228" path="res://assets/rural area/ruralparalaxmoon.png" id="2_rcqid"]
+[ext_resource type="Texture2D" uid="uid://cjctmuxhqi5ya" path="res://assets/rural area/ruralparallaxclouds.png" id="3_1ajci"]
+[ext_resource type="Texture2D" uid="uid://bdy4xynih21om" path="res://assets/Hover-button.png" id="4_5pajh"]
+[ext_resource type="Texture2D" uid="uid://cxwkop8jy7d64" path="res://assets/rural area/ruralparallaxmountainback2.png" id="4_7b55j"]
+[ext_resource type="Texture2D" uid="uid://c17mv46e3iu8h" path="res://assets/rural area/ruralparallaxmountainback.png" id="5_5pajh"]
+[ext_resource type="Texture2D" uid="uid://dd5jujkgdd3j2" path="res://assets/rural area/ruralparallaxmountain.png" id="6_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://b163q0p30scyj" path="res://assets/rural area/ruralparallaxvillage.png" id="7_a8gd2"]
+[ext_resource type="Texture2D" uid="uid://benxgsnic3apa" path="res://assets/rural area/ruralparallaxriver.png" id="8_1ajci"]
+[ext_resource type="FontFile" uid="uid://dfjn5lkewc873" path="res://assets/game_over.ttf" id="8_hstxw"]
+[ext_resource type="Texture2D" uid="uid://cosmp1l2t3aee" path="res://assets/rural area/ruralparallaxriverskyredlex.png" id="9_7b55j"]
+[ext_resource type="Texture2D" uid="uid://b5fdse2ck47ad" path="res://assets/Play.png" id="9_8egab"]
+[ext_resource type="Script" uid="uid://dqj60nljng6nb" path="res://scenes/main_menu.gd" id="10_gw5y6"]
+[ext_resource type="Texture2D" uid="uid://bg34on1lkihay" path="res://assets/Settings.png" id="11_svtp6"]
+[ext_resource type="Texture2D" uid="uid://d1e0qkawj1lhp" path="res://assets/Exit.png" id="12_1dfpl"]
+[ext_resource type="PackedScene" uid="uid://fb7bpl0i8ans" path="res://scenes/settings.tscn" id="15_7b55j"]
+
+[node name="MainMenu" type="Node" unique_id=969572466]
+script = ExtResource("10_gw5y6")
+
+[node name="Title" type="Label" parent="." unique_id=1416766024]
+offset_left = 149.0
+offset_top = -15.0
+offset_right = 732.0
+offset_bottom = 147.0
+theme_override_colors/font_shadow_color = Color(0.8784314, 0.32156864, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_hstxw")
+theme_override_font_sizes/font_size = 200
+text = "FLAPPY BIRD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2138385745]
+offset_left = 223.0
+offset_top = 377.0
+offset_right = 640.0
+offset_bottom = 440.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2016228904]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=571418127]
+custom_minimum_size = Vector2(130, 100)
+layout_mode = 2
+tooltip_text = "Exit Game"
+toggle_mode = true
+texture_normal = ExtResource("12_1dfpl")
+texture_pressed = ExtResource("12_1dfpl")
+texture_hover = ExtResource("4_5pajh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="StartButton" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=2025372872]
+custom_minimum_size = Vector2(130, 100)
+layout_mode = 2
+tooltip_text = "Start Game"
+texture_normal = ExtResource("9_8egab")
+texture_pressed = ExtResource("9_8egab")
+texture_hover = ExtResource("4_5pajh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SettingsButton" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1418724309]
+custom_minimum_size = Vector2(130, 100)
+layout_mode = 2
+tooltip_text = "Settings"
+texture_normal = ExtResource("11_svtp6")
+texture_pressed = ExtResource("11_svtp6")
+texture_hover = ExtResource("4_5pajh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1731029471]
+
+[node name="LayerSky" type="ParallaxLayer" parent="ParallaxBackground" unique_id=473647090]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="LayerMoon" type="ParallaxLayer" parent="ParallaxBackground" unique_id=643184908]
+motion_scale = Vector2(0.02, 0.02)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMoon" unique_id=584868460]
+position = Vector2(-68, 617)
+scale = Vector2(0.5265789, 0.5354166)
+texture = ExtResource("2_rcqid")
+
+[node name="LayerClouds" type="ParallaxLayer" parent="ParallaxBackground" unique_id=911634654]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerClouds" unique_id=1249195846]
+position = Vector2(411, 343)
+scale = Vector2(1, 0.58666664)
+texture = ExtResource("3_1ajci")
+
+[node name="LayerMountainBack2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=440653139]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMountainBack2" unique_id=1956796777]
+position = Vector2(409.5001, 723)
+scale = Vector2(1.0028949, 0.875)
+texture = ExtResource("4_7b55j")
+
+[node name="LayerMountainBack" type="ParallaxLayer" parent="ParallaxBackground" unique_id=599500840]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMountainBack" unique_id=1780764651]
+position = Vector2(412.5, 602.5)
+scale = Vector2(1.0013158, 1.1758333)
+texture = ExtResource("5_5pajh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/LayerMountainBack" unique_id=467158286]
+position = Vector2(411, 710.5)
+scale = Vector2(1, 1.2141666)
+texture = ExtResource("1_flqon")
+
+[node name="LayerMountain" type="ParallaxLayer" parent="ParallaxBackground" unique_id=206636398]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMountain" unique_id=1069864265]
+position = Vector2(408, 612.25006)
+scale = Vector2(1, 0.6620834)
+texture = ExtResource("6_j7ex8")
+
+[node name="LayerVillage" type="ParallaxLayer" parent="ParallaxBackground" unique_id=995801307]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerVillage" unique_id=1802672015]
+position = Vector2(409.50003, 627.5)
+scale = Vector2(1.0013158, 1.0508333)
+texture = ExtResource("7_a8gd2")
+
+[node name="ForegroundParallax" type="ParallaxBackground" parent="." unique_id=1819891102]
+layer = 1
+
+[node name="LayerRiver" type="ParallaxLayer" parent="ForegroundParallax" unique_id=28959235]
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ForegroundParallax/LayerRiver" unique_id=1733447245]
+position = Vector2(944.00006, 581)
+scale = Vector2(1.2752632, 1)
+texture = ExtResource("8_1ajci")
+
+[node name="LayerRiverBack" type="ParallaxLayer" parent="ForegroundParallax" unique_id=2059019045]
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ForegroundParallax/LayerRiverBack" unique_id=1646418833]
+position = Vector2(935.50006, 577)
+scale = Vector2(1.273421, 1)
+texture = ExtResource("9_7b55j")
+
+[node name="SettingsMenu" parent="." unique_id=696278633 instance=ExtResource("15_7b55j")]
+visible = false
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
