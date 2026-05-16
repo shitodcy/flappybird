@@ -15,9 +15,19 @@ const PIPE_DELAY : int = 500
 const PIPE_RANGE : int = 200
 const SAVE_PATH = "user://highscore.save"
 
+# Health system
+var health : int = 3
+var max_health : int = 3
+var is_immune : bool = false
+const IMMUNITY_DURATION : float = 1.5
+const HEALTH_ICON_SIZE : Vector2 = Vector2(32, 32)
+
 @onready var camera = $Camera2D
 @onready var bgm = $BGM
 @onready var settings_menu = $SettingsMenu
+@onready var health_container = $HealthContainer
+@onready var immunity_timer = $ImmunityTimer
+@onready var health_icon_template = $HealthContainer/HealthIconTemplate
 
 var shake_intensity : float = 0.0
 var shake_duration : float = 0.0
@@ -30,7 +40,6 @@ func _ready():
 	screen_size = get_window().size
 	ground_height = 164 
 	
-	# Sembunyikan menu pengaturan saat awal game dibuka
 	if has_node("SettingsMenu"):
 		settings_menu.hide()
 		
@@ -42,7 +51,10 @@ func new_game():
 	game_over = false
 	score = 0
 	scroll = 0
-	SCROLL_SPEED = 240.0 
+	SCROLL_SPEED = 240.0
+	health = max_health
+	is_immune = false
+	immunity_timer.stop()
 	
 	# Memutar BGM
 	if has_node("BGM"):
@@ -55,34 +67,31 @@ func new_game():
 	pipes.clear()
 	generate_pipes()
 	$Bird.reset()
+	$Bird.set_immune_visual(false)
+	update_health_ui()
 	
 func _input(event):
-	# Memastikan event adalah penekanan tombol keyboard
 	if event is InputEventKey and event.pressed:
 
 		if event.keycode == KEY_S:
-			# Hanya bisa dibuka jika menu belum terbuka
 			if settings_menu != null and not settings_menu.visible:
 				_on_settings_button_pressed()
 
 		elif event.keycode == KEY_ESCAPE:
-			# Hanya bisa ditutup jika menu sedang terbuka
 			if settings_menu != null and settings_menu.visible:
 				settings_menu.hide()
-				# Game tetap dalam keadaan pause (menunggu spasi)
 
 		elif event.keycode == KEY_SPACE:
 			
-			# 1. Cegah spasi melakukan apa pun jika menu pengaturan sedang terbuka
 			if settings_menu != null and settings_menu.visible:
 				return
 				
-			# 2. Logika Unpause (Melanjutkan game jika sedang dipause)
+			# Logika Unpause
 			if get_tree().paused:
 				get_tree().paused = false
 				return
 				
-			# 3. Logika Utama Flappy Bird (Hanya berjalan jika game tidak over)
+			# Logika Utama
 			if game_over == false:
 				if game_running == false:
 					start_game()
@@ -98,7 +107,6 @@ func start_game():
 	$PipeTimer.start()
 
 func _process(delta):
-	# Jika mesin game sedang pause, jangan jalankan pergerakan pipa/background
 	if get_tree().paused:
 		return
 
@@ -120,7 +128,7 @@ func _process(delta):
 			else:
 				pipes.remove_at(i)
 
-	# Logika Shake tetap berjalan (opsional)
+	# Logika Shake tetap berjalan
 	if shake_duration > 0:
 		shake_duration -= delta
 		camera.offset = Vector2(
@@ -197,24 +205,62 @@ func bird_hit():
 	
 	if game_over == true:
 		return
+	
+	if is_immune:
+		return
 		
+	health -= 1
+	update_health_ui()
+	
 	$HitSound.play() 
 	trigger_shake(5.0, 0.2)
-	$Bird.falling = true
-	stop_game()
+	
+	if health <= 0:
+		$Bird.falling = true
+		stop_game()
+	else:
+		# Reset posisi burung ke tengah setelah terkena
+		$Bird.position = Vector2($Bird.START_POS.x, screen_size.y / 2 - 50)
+		$Bird.velocity = Vector2.ZERO
+		$Bird.falling = false
+		
+		# Mulai immunity window
+		is_immune = true
+		$Bird.set_immune_visual(true)
+		immunity_timer.start(IMMUNITY_DURATION)
 	
 func _on_ground_hit():
+	
+	if game_over == true:
+		return
+	
 	$HitSound.play() 
 	trigger_shake(5.0, 0.2)
 	$Bird.falling = false
 	stop_game()
+
+func _on_immunity_timer_timeout():
+	is_immune = false
+	$Bird.set_immune_visual(false)
+
+func update_health_ui():
+	for child in health_container.get_children():
+		if child != health_icon_template:
+			child.queue_free()
+	
+	for i in range(health):
+		var icon = health_icon_template.duplicate()
+		icon.visible = true
+		icon.modulate = Color.WHITE
+		health_container.add_child(icon)
+	
+	health_container.move_child(health_icon_template, 0)
 
 func _on_game_over_restart():
 	new_game()
 
 func _on_settings_button_pressed():
 	if settings_menu != null:
-		# Jika game sedang berjalan, aktifkan mode pause pada engine
 		if game_running:
 			get_tree().paused = true
 		settings_menu.show()
