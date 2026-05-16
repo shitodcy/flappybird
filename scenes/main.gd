@@ -244,6 +244,7 @@ func _on_immunity_timer_timeout():
 	$Bird.set_immune_visual(false)
 
 func update_health_ui():
+	health_icon_template.hide()
 	for child in health_container.get_children():
 		if child != health_icon_template:
 			child.queue_free()
