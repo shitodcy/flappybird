@@ -1,13 +1,12 @@
 extends Node
 
 @onready var parallax_bg = $ParallaxBackground
-@onready var foreground_parallax = $ForegroundParallax # Jika ada
-@onready var settings_menu = $SettingsMenu # --- TAMBAHKAN REFERENSI INI ---
+@onready var foreground_parallax = $ForegroundParallax
+@onready var settings_menu = $SettingsMenu
 
-var scroll_speed : float = 240.0 # Kecepatan jalan background di menu
+var scroll_speed : float = 240.0
 
 func _ready():
-	# --- KODE PENGAMAN BARU ---
 	# Menyembunyikan menu pengaturan secara otomatis saat game baru dibuka
 	if has_node("SettingsMenu"):
 		settings_menu.hide()
@@ -18,8 +17,6 @@ func _process(delta):
 	parallax_bg.scroll_base_offset.x -= movement
 	if has_node("ForegroundParallax"):
 		$ForegroundParallax.scroll_base_offset.x -= movement
-
-# --- FUNGSI TOMBOL ---
 
 func _on_start_button_pressed():
 	# Berpindah ke scene utama permainan

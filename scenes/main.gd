@@ -63,9 +63,8 @@ func _input(event):
 		if event.keycode == KEY_S:
 			# Hanya bisa dibuka jika menu belum terbuka
 			if settings_menu != null and not settings_menu.visible:
-				_on_settings_button_pressed() # Memanggil fungsi tombol settings (otomatis pause)
-				
-		# --- SHORTCUT TUTUP SETTINGS (Tombol 'Esc') ---
+				_on_settings_button_pressed()
+
 		elif event.keycode == KEY_ESCAPE:
 			# Hanya bisa ditutup jika menu sedang terbuka
 			if settings_menu != null and settings_menu.visible:
@@ -81,7 +80,7 @@ func _input(event):
 			# 2. Logika Unpause (Melanjutkan game jika sedang dipause)
 			if get_tree().paused:
 				get_tree().paused = false
-				return # Return di sini agar burung tidak ikut lompat di frame yang sama saat unpause
+				return
 				
 			# 3. Logika Utama Flappy Bird (Hanya berjalan jika game tidak over)
 			if game_over == false:
