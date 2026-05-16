@@ -13,8 +13,8 @@ yang harus melewati celah antar pipa tanpa menabrak. Setiap pipa yang dilewati m
   <img src="https://github.com/shitodcy/flappybird/blob/main/Game%20preview/Main-menu-settings.png" width="48%" />
 </p>
 <p align="center">
-  <img src="https://github.com/shitodcy/flappybird/blob/main/Game%20preview/Gameplay.png" width="48%" />
-  <img src="https://github.com/shitodcy/flappybird/blob/main/Game%20preview/Settings-ingame.png" width="48%" />
+  <img src="https://github.com/shitodcy/flappybird/blob/main/Game%20preview/Gameplay-barhealth.png" width="48%" />
+  <img src="https://github.com/shitodcy/flappybird/blob/main/Game%20preview/Settings-ingamebarhealth.png" width="48%" />
 </p>
 <p align="center">
   <img src="https://github.com/shitodcy/flappybird/blob/main/Game%20preview/Game-over.png" width="48%" />
