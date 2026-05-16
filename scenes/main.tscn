@@ -3,25 +3,26 @@
 [ext_resource type="Script" uid="uid://cj71tuxjbs17i" path="res://scenes/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://vynmpck4ijox" path="res://scenes/pipe.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bqeb7br0unuvx" path="res://scenes/bird.tscn" id="3_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://coesy8pf1vq3x" path="res://assets/rural area/ruralparallaxsky.png" id="3_ya4ey"]
-[ext_resource type="Texture2D" uid="uid://5ikmwer3n228" path="res://assets/rural area/ruralparalaxmoon.png" id="4_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://coesy8pf1vq3x" path="res://assets/image/ruralparallaxsky.png" id="3_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://5ikmwer3n228" path="res://assets/image/ruralparalaxmoon.png" id="4_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://c0oi8rm1gxe3x" path="res://scenes/ground.tscn" id="4_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://cjctmuxhqi5ya" path="res://assets/rural area/ruralparallaxclouds.png" id="5_trceg"]
+[ext_resource type="Texture2D" uid="uid://cjctmuxhqi5ya" path="res://assets/image/ruralparallaxclouds.png" id="5_trceg"]
 [ext_resource type="PackedScene" uid="uid://uccisgjp4ka7" path="res://scenes/game_over.tscn" id="6_tefeu"]
-[ext_resource type="Texture2D" uid="uid://cxwkop8jy7d64" path="res://assets/rural area/ruralparallaxmountainback2.png" id="6_trceg"]
-[ext_resource type="Texture2D" uid="uid://c17mv46e3iu8h" path="res://assets/rural area/ruralparallaxmountainback.png" id="7_a8y0u"]
-[ext_resource type="AudioStream" uid="uid://bisus6s6hdgyu" path="res://assets/score.wav" id="7_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://dd5jujkgdd3j2" path="res://assets/rural area/ruralparallaxmountain.png" id="8_a8y0u"]
-[ext_resource type="AudioStream" uid="uid://bslxlfl248lr6" path="res://assets/hit.wav" id="8_tipki"]
-[ext_resource type="AudioStream" uid="uid://c01m8k1s0858o" path="res://assets/fall.wav" id="9_85g3d"]
-[ext_resource type="Texture2D" uid="uid://b163q0p30scyj" path="res://assets/rural area/ruralparallaxvillage.png" id="9_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://benxgsnic3apa" path="res://assets/rural area/ruralparallaxriver.png" id="10_jbj1t"]
-[ext_resource type="Texture2D" uid="uid://cosmp1l2t3aee" path="res://assets/rural area/ruralparallaxriverskyredlex.png" id="11_dp3eg"]
-[ext_resource type="FontFile" uid="uid://dfjn5lkewc873" path="res://assets/game_over.ttf" id="14_yc10j"]
-[ext_resource type="AudioStream" uid="uid://b73y85x7qt4bm" path="res://assets/summer nights.ogg" id="18_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://cxwkop8jy7d64" path="res://assets/image/ruralparallaxmountainback2.png" id="6_trceg"]
+[ext_resource type="Texture2D" uid="uid://c17mv46e3iu8h" path="res://assets/image/ruralparallaxmountainback.png" id="7_a8y0u"]
+[ext_resource type="AudioStream" uid="uid://bisus6s6hdgyu" path="res://assets/audio/sfx/score.wav" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dd5jujkgdd3j2" path="res://assets/image/ruralparallaxmountain.png" id="8_a8y0u"]
+[ext_resource type="AudioStream" uid="uid://bslxlfl248lr6" path="res://assets/audio/sfx/hit.wav" id="8_tipki"]
+[ext_resource type="AudioStream" uid="uid://c01m8k1s0858o" path="res://assets/audio/sfx/fall.wav" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://b163q0p30scyj" path="res://assets/image/ruralparallaxvillage.png" id="9_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://benxgsnic3apa" path="res://assets/image/ruralparallaxriver.png" id="10_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://cosmp1l2t3aee" path="res://assets/image/ruralparallaxriverskyredlex.png" id="11_dp3eg"]
+[ext_resource type="FontFile" uid="uid://dfjn5lkewc873" path="res://assets/font/game_over.ttf" id="14_yc10j"]
+[ext_resource type="AudioStream" uid="uid://b73y85x7qt4bm" path="res://assets/audio/bgm/summer nights.ogg" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://fb7bpl0i8ans" path="res://scenes/settings.tscn" id="19_0ld40"]
-[ext_resource type="Texture2D" uid="uid://bg34on1lkihay" path="res://assets/Settings.png" id="20_yc10j"]
-[ext_resource type="Texture2D" uid="uid://bdy4xynih21om" path="res://assets/Hover-button.png" id="21_jscy8"]
+[ext_resource type="Texture2D" uid="uid://bg34on1lkihay" path="res://assets/button/Settings.png" id="20_yc10j"]
+[ext_resource type="Texture2D" uid="uid://bdy4xynih21om" path="res://assets/button/Hover-button.png" id="21_jscy8"]
+[ext_resource type="Texture2D" uid="uid://dmd0kti3dqbh2" path="res://assets/image/health_icon.png" id="22_icon"]
 
 [node name="Main" type="Node" unique_id=111267009]
 process_mode = 3
@@ -197,7 +198,34 @@ texture_hover = ExtResource("21_jscy8")
 [node name="SettingsMenu" parent="." unique_id=696278633 instance=ExtResource("19_0ld40")]
 process_mode = 3
 
+[node name="ImmunityTimer" type="Timer" parent="." unique_id=1023553862]
+wait_time = 1.5
+one_shot = true
+
+[node name="HealthContainer" type="HBoxContainer" parent="." unique_id=67795366]
+z_index = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 228.0
+offset_top = -892.0
+offset_right = 388.0
+offset_bottom = -864.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="HealthIconTemplate" type="TextureRect" parent="HealthContainer" unique_id=2116256300]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("22_icon")
+stretch_mode = 5
+
 [connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
 [connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="timeout" from="ImmunityTimer" to="." method="_on_immunity_timer_timeout"]
