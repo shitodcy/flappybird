@@ -24,8 +24,8 @@ yang harus melewati celah antar pipa tanpa menabrak. Setiap pipa yang dilewati m
 
 ## Gameplay Video
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=HzvpOtyJYGs">
-    <img src="https://markdown-videos-api.jorgenkh.no/youtube/HzvpOtyJYGs" alt="Flappy Bird Gameplay" />
+  <a href="https://youtu.be/RbMZd6gc9WE">
+    <img src="https://markdown-videos-api.jorgenkh.no/youtube/RbMZd6gc9WE" alt="Flappy Bird Gameplay" />
   </a>
 </div>
 
